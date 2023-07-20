@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+</body>
+
+
+<script>
+
+    class Dept {
+        constructor() {
+            this.subs = []
+        }
+
+        addSub(watcher) {
+            this.subs.push(watcher)
+        }
+
+        notify() {
+            this.subs.forEach(item => {
+                item.update()
+            })
+        }
+    }
+
+    class Watcher {
+        constructor(cb) {
+            this.cb = cb
+        }
+
+        update() {
+            this.cb()
+        }
+    }
+
+
+    const w1 = new Watcher(() => {
+        console.log('我是第1个订阅者')
+    })
+
+    const w2 = new Watcher(() => {
+        console.log('我是第2个订阅者')
+    })
+    let dept = new Dept();
+    dept.addSub(w1)
+    dept.addSub(w2)
+    dept.notify()
+
+
+</script>
+</html>

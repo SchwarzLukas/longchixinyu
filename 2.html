@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script>
+
+    const vm = {
+        el: '#app',
+        data: {
+            name: 'zs',
+            age: 20,
+            info: {
+                a: 'a1',
+                c: 'c1'
+            }
+        }
+    }
+
+    let arr=['data','info','a' ]
+    Object.keys(vm).forEach((key) => {
+        let value = vm[key]
+        Object.defineProperty(vm, key, {
+            enumerable: true,
+            configurable: true,
+            get() {
+                console.log("get")
+                return value
+            },
+            set(newVal) {
+                console.log("set")
+
+            },
+        })
+    })
+
+
+
+    arr.reduce((newObj,key)=>{
+        console.log(newObj,key)
+        return newObj[key]
+    },vm)
+
+</script>
+</html>
